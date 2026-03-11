@@ -1,0 +1,18 @@
+# Model weights — never commit, pulled by bootstrap.sh
+infra/models/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+
+# Build artifacts
+build/
+dist/
+*.gguf
+
+# autoresearch runtime
+results.tsv
+run.log
+eval_prompts.jsonl
