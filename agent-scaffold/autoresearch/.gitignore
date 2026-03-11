@@ -1,0 +1,7 @@
+# autoresearch runtime artifacts — never commit these
+results.tsv
+run.log
+eval_prompts.jsonl
+__pycache__/
+*.pyc
+.env

@@ -1,0 +1,14 @@
+# eval_prompts.jsonl.example
+# Format reference only. Do not rename or use this file directly.
+# The agent generates eval_prompts.jsonl during Setup Step 5
+# from project KNOWLEDGE/, MEMORY/context.md, and the stated run goal.
+#
+# Format: one JSON object per line.
+# Required field: "prompt" (string)
+# Optional field: "expected" (string) — used by default token-overlap scorer.
+# If using a custom eval_fn in experiment.py, "expected" may be omitted.
+#
+# Example entries:
+{"prompt": "Summarise the key risk in this contract.", "expected": "liability cap"}
+{"prompt": "What is the recommended action given this data?", "expected": "reduce batch size"}
+{"prompt": "Classify this support ticket.", "expected": "billing"}
