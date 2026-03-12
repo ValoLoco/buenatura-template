@@ -12,6 +12,7 @@ This file contains only pointers. No content lives here.
 3. Naming convention: `YYYY-MM-DD-task-description-vN.md`, kebab-case folders.
 4. All work-in-progress output goes to `output/`.
 5. All final approved output goes to `output/final/`.
+6. When any infrastructure file changes (skills, agents, workflows, routing): update `CLAUDE.md` and `.claude/routing-table.md` in the same commit. No deferred hygiene.
 
 ---
 

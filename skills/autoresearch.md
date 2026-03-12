@@ -25,7 +25,7 @@ Work with the user to:
    - `experiment.py` — the only file you modify (model config, eval params, loop)
    - `harness.py` — fixed eval harness, read-only, do not modify
    - `README.md` — repo context
-   - `KNOWLEDGE/` — all files, for domain context
+   - `KNOWLEDGE/` — read up to 5 files or 2000 tokens total. Summarize remaining files by filename only.
    - `MEMORY/context.md` — if it exists
 4. **Verify runtime** — confirm BitNet model exists at path in `$BITNET_MODEL`
    or the default path in `harness.py`. If not, tell the human and stop.
@@ -100,6 +100,12 @@ If stuck for ideas: re-read `harness.py`, revisit near-misses, try combining
 two previously discarded changes, or simplify something that already works.
 
 **NEVER STOP.**
+
+## Handoffs
+
+- If experiment scope expands beyond a single file: stop, flag to human, route to `@project`.
+- If a domain knowledge gap blocks prompt generation: route to `@researcher` with the specific gap.
+- Log all handoffs to `MEMORY/context.md` Past Decisions table before stopping.
 
 ## BitNet Runtime Notes
 
