@@ -66,5 +66,5 @@ Escalate immediately when Gate 4 (Safety) fails. Do not return a revision sugges
 
 How to escalate:
 1. Stop all execution immediately.
-2. Write a row to `[PROJECT_ROOT]/MEMORY/context.md` Past Decisions: date, output reviewed, Gate 4 failure detail.
+2. Write a row to `[PROJECT_ROOT]/agent-scaffold/MEMORY/context.md` Past Decisions: date, output reviewed, Gate 4 failure detail.
 3. Halt and await human review.
