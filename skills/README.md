@@ -20,13 +20,17 @@ Scoring scale: 4 dimensions (Context Length, Reasoning Depth, Stakes, Reversibil
 
 | Skill | File | Load When |
 |-------|------|-----------|
+| Knowledge Search | `knowledge-search.md` | Before any task requiring retrieval from KNOWLEDGE/ corpus. Run before loading full files. |
 | Research Workflow | `research-workflow.md` | Any task requiring context-first knowledge gathering. VERITAS runs embedded at Step 4. |
 | VERITAS Verification | `veritas-verification.md` | Validating claims, agent outputs, or strategies outside of a research task. Run standalone. |
 | Project Charter | `project-charter.md` | DMAIC Define phase. Project Execution Phase 1 (Initiate). |
 | SIPOC | `sipoc.md` | DMAIC Define phase. Project Execution Phase 3 (Structure). |
 | FMEA | `fmea.md` | DMAIC Analyze phase. Project Execution Phase 3 (Structure). |
 | Control Plan | `control-plan.md` | DMAIC Control phase. Project Execution Phase 6 (Close). |
+| Business Architect | `business-architect.md` | One-person AI business design: market validation, MVP, offer, prototype, agent stack. |
+| AgentOps | `agentops.md` | Instrument any task with tool calls, model calls, or multi-step execution. Run eval.py for daily review. |
 | Autoresearch | `autoresearch.md` | Autonomous iterative model experimentation. Run overnight or unattended. Requires BitNet runtime. |
+| Skill Creation Guide | `skill-creation-guide.md` | When building a new skill from scratch. Follow all 4 registration surfaces in Step 4. |
 
 **VERITAS usage note**: when running Research Workflow, VERITAS is already embedded at Step 4. Load `veritas-verification.md` standalone only when you are validating output or claims without doing a full research task.
 
