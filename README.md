@@ -8,10 +8,11 @@ Every file has a purpose. No bloat.
 
 | Folder | Purpose |
 |--------|---------|
-| `.claude/` | Core rules: routing, guardrails, evaluator, principles, session log |
+| `.claude/` | Core rules: routing, guardrails, evaluator, principles, naming conventions, session log, self-extension protocol |
 | `workflows/` | Process definitions: DMAIC, OODA, FATE, project lifecycle, iteration loop |
-| `skills/` | Reusable behaviour modules: research, verification, FMEA, control plan, business design |
-| `agent-scaffold/` | Blank agent template + 8 ready-to-use agents + PLAYBOOKS, TEMPLATES, MEMORY, KNOWLEDGE |
+| `skills/` | Reusable behaviour modules: knowledge search (RAG), research, verification, FMEA, control plan, business design, AgentOps |
+| `tools/` | Executable Python tools: `knowledge_search.py` (semantic search over KNOWLEDGE/) |
+| `agent-scaffold/` | Blank agent template + 8 ready-to-use agents + ops (AgentOps), PLAYBOOKS, TEMPLATES, MEMORY, KNOWLEDGE |
 | `infra/` | Local inference backend: BitNet submodule + bootstrap script |
 | `KNOWLEDGE/` | Persistent reference material promoted from verified outputs |
 | `MEMORY/` | Agent memory: context.md (state) + session logs |
@@ -55,6 +56,22 @@ bash infra/bootstrap.sh
 Every task routes through `skills/model-routing.md` first. Low and medium complexity tasks run locally.
 High complexity tasks escalate to the configured frontier API.
 
+## RAG: Semantic Knowledge Search
+
+The `tools/knowledge_search.py` tool indexes all `.md` files in `KNOWLEDGE/` and returns semantically relevant chunks for any query.
+Load `skills/knowledge-search.md` before accessing `KNOWLEDGE/` directly. Context window stays lean.
+
+```bash
+python tools/knowledge_search.py "your query" --top-k 5
+```
+
+## AgentOps: Built-in Observability
+
+Every agent task can be instrumented with `agent-scaffold/ops/trace_logger.py`.
+One JSONL trace file per day at `output/traces/YYYY-MM-DD.jsonl`.
+Review daily performance with `python agent-scaffold/ops/eval.py`.
+Load `skills/agentops.md` for the full instrumentation guide.
+
 ## Core Principles
 
 5 principles active on every task (`principles-core.md`):
@@ -68,4 +85,4 @@ High complexity tasks escalate to the configured frontier API.
 
 ## Version
 
-Current: `1.1.0` — See `CHANGELOG.md` for full history.
+Current: `1.2.0` — See `CHANGELOG.md` for full history.
