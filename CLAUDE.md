@@ -12,7 +12,7 @@ This file contains only pointers. No content lives here.
 3. Naming convention: `YYYY-MM-DD-task-description-vN.md`, kebab-case folders.
 4. All work-in-progress output goes to `output/`.
 5. All final approved output goes to `output/final/`.
-6. When any infrastructure file changes (skills, agents, workflows, routing): update `CLAUDE.md` and `.claude/routing-table.md` in the same commit. No deferred hygiene.
+6. When any infrastructure file changes (skills, agents, workflows, routing): update `.claude/routing-table.md` in the same session. `CLAUDE.md` only needs updating when a new top-level section or global rule changes. Do not defer either update past the current session.
 
 ---
 
@@ -58,4 +58,4 @@ Search https://skills.sh before building anything bespoke.
 ## Escalation
 
 After 3 revisions without improvement: stop and flag for human review.
-Write escalation row to `MEMORY/context.md` Past Decisions table. Halt.
+Write escalation row to `agent-scaffold/MEMORY/context.md` Past Decisions table. Halt.
