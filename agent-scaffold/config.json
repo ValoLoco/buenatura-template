@@ -1,0 +1,34 @@
+{
+  "name": "[agent-name]",
+  "version": "1.0.0",
+  "role": "[One sentence: what this agent does and does not do]",
+  "capabilities": [
+    "[capability-1]",
+    "[capability-2]"
+  ],
+  "context_root": "[PROJECT_ROOT]",
+  "infra_dir": "[PROJECT_ROOT]/infra",
+  "bootstrap_required": true,
+  "load_on_start": [
+    "[PROJECT_ROOT]/.claude/routing-table.md",
+    "[PROJECT_ROOT]/.claude/guardrails.md",
+    "[PROJECT_ROOT]/.claude/principles-core.md"
+  ],
+  "load_on_task": {
+    "inference_gate": "[PROJECT_ROOT]/skills/model-routing.md",
+    "local_inference": "[PROJECT_ROOT]/skills/local-inference.md",
+    "research": "[PROJECT_ROOT]/skills/research-workflow.md",
+    "verification": "[PROJECT_ROOT]/skills/veritas-verification.md",
+    "comms": "[PROJECT_ROOT]/workflows/comms-negotiation.md",
+    "process_improvement": "[PROJECT_ROOT]/workflows/dmaic-recursive.md",
+    "decision": "[PROJECT_ROOT]/workflows/ooda-decision.md",
+    "project": "[PROJECT_ROOT]/workflows/project-execution.md",
+    "iteration_loop": "[PROJECT_ROOT]/workflows/iteration-loop.md",
+    "agent_design": "[PROJECT_ROOT]/.claude/principles-extended.md"
+  },
+  "output_dir": "[PROJECT_ROOT]/output",
+  "final_dir": "[PROJECT_ROOT]/output/final",
+  "escalate_to": "[human-reviewer or coordinator-agent-name]",
+  "max_iterations": 10,
+  "ship_threshold": 0.85
+}
