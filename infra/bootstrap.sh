@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# bootstrap.sh — one-command setup for buenatura-template projects
+# bootstrap.sh - one-command setup for buenatura-template projects
 # Run once per machine after cloning or forking the template.
 set -euo pipefail
 
@@ -8,7 +8,7 @@ echo "[bootstrap] BUENATURA Template v${TEMPLATE_VERSION}"
 echo "[bootstrap] Starting setup..."
 
 # 1. Create required directories if missing
-for dir in output/final KNOWLEDGE MEMORY infra/models; do
+for dir in output/final KNOWLEDGE MEMORY infra/models KNOWLEDGE/.index output/traces; do
   mkdir -p "$dir"
   echo "[bootstrap] ensured: $dir"
 done
@@ -39,9 +39,28 @@ if command -v python3 &>/dev/null; then
   echo "[bootstrap] Python found: $PYVER"
 else
   echo "[bootstrap] WARNING: python3 not found. Install Python 3.10+ before running skills."
+  exit 1
 fi
 
-# 5. Check uv (optional, used by autoresearch scaffold)
+# 5. Install RAG dependencies
+echo "[bootstrap] Installing RAG dependencies (sentence-transformers, sqlite-vec)..."
+if command -v uv &>/dev/null; then
+  uv pip install sentence-transformers sqlite-vec
+else
+  python3 -m pip install --quiet sentence-transformers sqlite-vec
+fi
+echo "[bootstrap] RAG dependencies installed."
+
+# 6. Pre-build knowledge index if KNOWLEDGE/ has any .md files
+if ls KNOWLEDGE/*.md 1>/dev/null 2>&1; then
+  echo "[bootstrap] Pre-building KNOWLEDGE index..."
+  python3 tools/knowledge_search.py "warmup" --top-k 1 > /dev/null 2>&1 || true
+  echo "[bootstrap] Knowledge index ready."
+else
+  echo "[bootstrap] INFO: No .md files in KNOWLEDGE/ yet. Index will build on first search."
+fi
+
+# 7. Check uv (optional, used by autoresearch scaffold)
 if command -v uv &>/dev/null; then
   echo "[bootstrap] uv found: $(uv --version)"
 else

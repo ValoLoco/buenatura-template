@@ -24,6 +24,7 @@ Requires `infra/bootstrap.sh` to have been run once on this machine.
 
 | Task | Read | Skip | Load Skill |
 |------|------|------|------------|
+| Knowledge Retrieval | None | All workflow files | `skills/knowledge-search.md` — run before loading any KNOWLEDGE/ file directly |
 | Research / Fact-Finding | `.claude/guardrails.md` | All workflow files | `skills/research-workflow.md`, `skills/veritas-verification.md` |
 | Comms / Marketing / Negotiations | `workflows/comms-negotiation.md` | `agent-scaffold/` | `skills/research-workflow.md` |
 | Decision-Making | `workflows/ooda-decision.md` | All execution folders | None |

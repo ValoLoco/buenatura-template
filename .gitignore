@@ -1,4 +1,4 @@
-# Model weights — never commit, pulled by bootstrap.sh
+# Model weights - never commit, pulled by bootstrap.sh
 infra/models/
 
 # Python
@@ -16,3 +16,6 @@ dist/
 results.tsv
 run.log
 eval_prompts.jsonl
+
+# RAG index - rebuilt locally by bootstrap.sh, never commit the binary
+KNOWLEDGE/.index/knowledge.db
