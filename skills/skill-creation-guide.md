@@ -45,6 +45,9 @@ Structure (after the frontmatter):
 
 [One-sentence purpose.]
 
+## Trigger Conditions
+[When exactly to load this skill.]
+
 ## Steps
 1. ...
 2. ...
@@ -52,18 +55,33 @@ Structure (after the frontmatter):
 ## Rules
 - ...
 
+## Handoffs
+[Where to escalate if scope is exceeded. Reference specific agents by @command.]
+
 ## Output
-[Format and file location.]
+[Format and file location. Follow global naming: output/YYYY-MM-DD-[task-subtype]-vN.md]
+
+## Verification
+[3-test protocol: happy path, edge case, error case. Score >= 0.85 with evaluator.md before marking production-ready.]
 ```
 
 Keep the file under 500 lines. If it grows beyond that, split into a main file and referenced sub-files.
 
 ---
 
-## Step 4: Register
+## Step 4: Register (All 4 Surfaces Required)
 
-Add to `skills/README.md` with: name, file path, and load condition.
-Add a routing table entry in `.claude/routing-table.md`.
+A skill is not registered until all four surfaces are updated. Incomplete registration is a High-severity defect per guardrails.md Gate 5.
+
+```
+Registration Checklist:
+[ ] skills/README.md              Add row: name, file path, load condition.
+[ ] .claude/routing-table.md      Add row in Task Routing table + row in Agent Registry if a new agent was created.
+[ ] agent-scaffold/agents/        If an agent was created: both [name].md AND [name].json must be present.
+[ ] MEMORY/context.md             Add a row to the Past Decisions table: date, agent, decision, rationale.
+```
+
+Do not mark the skill as ready until all four checkboxes are ticked.
 
 ---
 
@@ -75,6 +93,7 @@ Run the skill on at least 3 sample tasks before marking it ready:
 - Error case: invalid or incomplete input.
 
 Score with `.claude/evaluator.md`. Must reach 0.85 aggregate on all three tests.
+If any test scores < 0.85: iterate via `workflows/iteration-loop.md` and re-test before marking ready.
 
 ---
 

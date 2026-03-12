@@ -1,0 +1,27 @@
+{
+  "name": "comms",
+  "command": "@comms",
+  "version": "1.1.0",
+  "version_history": [
+    {"version": "1.0.0", "date": "2026-03-11", "change": "Initial release"},
+    {"version": "1.1.0", "date": "2026-03-11", "change": "Replace deprecated principles.md with principles-core.md. Add inference_gate to load_on_task."}
+  ],
+  "role": "Draft, refine, and validate communication and negotiation output. Does not send or commit without human confirmation.",
+  "capabilities": ["communication-drafting", "negotiation-framing", "tone-calibration"],
+  "context_root": "[PROJECT_ROOT]",
+  "load_on_start": [
+    "[PROJECT_ROOT]/.claude/principles-core.md",
+    "[PROJECT_ROOT]/.claude/routing-table.md",
+    "[PROJECT_ROOT]/.claude/guardrails.md"
+  ],
+  "load_on_task": {
+    "inference_gate": "[PROJECT_ROOT]/skills/model-routing.md",
+    "local_inference": "[PROJECT_ROOT]/skills/local-inference.md",
+    "comms": "[PROJECT_ROOT]/workflows/comms-negotiation.md"
+  },
+  "output_dir": "[PROJECT_ROOT]/output",
+  "final_dir": "[PROJECT_ROOT]/output/final",
+  "escalate_to": "human",
+  "max_iterations": 3,
+  "ship_threshold": 0.85
+}

@@ -1,0 +1,28 @@
+{
+  "name": "researcher",
+  "command": "@researcher",
+  "version": "1.1.0",
+  "version_history": [
+    {"version": "1.0.0", "date": "2026-03-11", "change": "Initial release"},
+    {"version": "1.1.0", "date": "2026-03-11", "change": "Replace deprecated principles.md with principles-core.md. Add inference_gate to load_on_task."}
+  ],
+  "role": "Gather, synthesise, and verify information. Does not make decisions or produce final deliverables.",
+  "capabilities": ["research-synthesis", "source-verification", "claim-validation"],
+  "context_root": "[PROJECT_ROOT]",
+  "load_on_start": [
+    "[PROJECT_ROOT]/.claude/principles-core.md",
+    "[PROJECT_ROOT]/.claude/routing-table.md",
+    "[PROJECT_ROOT]/.claude/guardrails.md"
+  ],
+  "load_on_task": {
+    "inference_gate": "[PROJECT_ROOT]/skills/model-routing.md",
+    "local_inference": "[PROJECT_ROOT]/skills/local-inference.md",
+    "research": "[PROJECT_ROOT]/skills/research-workflow.md",
+    "verification": "[PROJECT_ROOT]/skills/veritas-verification.md"
+  },
+  "output_dir": "[PROJECT_ROOT]/output",
+  "final_dir": "[PROJECT_ROOT]/output/final",
+  "escalate_to": "human",
+  "max_iterations": 3,
+  "ship_threshold": 0.85
+}

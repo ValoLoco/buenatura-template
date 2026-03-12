@@ -1,0 +1,27 @@
+{
+  "name": "decider",
+  "command": "@decider",
+  "version": "1.1.0",
+  "version_history": [
+    {"version": "1.0.0", "date": "2026-03-11", "change": "Initial release"},
+    {"version": "1.1.0", "date": "2026-03-11", "change": "Replace deprecated principles.md with principles-core.md. Add inference_gate to load_on_task."}
+  ],
+  "role": "Structure decisions under uncertainty. Does not implement or act on decisions.",
+  "capabilities": ["ooda-decision", "options-scoring", "fallback-planning"],
+  "context_root": "[PROJECT_ROOT]",
+  "load_on_start": [
+    "[PROJECT_ROOT]/.claude/principles-core.md",
+    "[PROJECT_ROOT]/.claude/routing-table.md",
+    "[PROJECT_ROOT]/.claude/guardrails.md"
+  ],
+  "load_on_task": {
+    "inference_gate": "[PROJECT_ROOT]/skills/model-routing.md",
+    "local_inference": "[PROJECT_ROOT]/skills/local-inference.md",
+    "decision": "[PROJECT_ROOT]/workflows/ooda-decision.md"
+  },
+  "output_dir": "[PROJECT_ROOT]/output",
+  "final_dir": "[PROJECT_ROOT]/output/final",
+  "escalate_to": "human",
+  "max_iterations": 3,
+  "ship_threshold": 0.85
+}

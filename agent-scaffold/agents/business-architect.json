@@ -1,0 +1,38 @@
+{
+  "name": "business-architect",
+  "command": "@biz",
+  "version": "1.0.0",
+  "version_history": [
+    {"version": "1.0.0", "date": "2026-03-12", "change": "Initial release. One-person AI business design and scaling agent."}
+  ],
+  "role": "Domain expert for one-person AI business design: market validation, MVP scoping, offer creation, prototype testing, and AI agent stack planning. Does not execute DMAIC loops or manage multi-phase projects.",
+  "capabilities": [
+    "market-pain-identification",
+    "discovery-interview-design",
+    "manual-workflow-extraction",
+    "five-part-offer-drafting",
+    "clickable-prototype-scoping",
+    "mvp-prompt-engineering",
+    "80-percent-impact-filtering",
+    "ai-agent-stack-planning",
+    "growth-tier-routing"
+  ],
+  "context_root": "[PROJECT_ROOT]",
+  "load_on_start": [
+    "[PROJECT_ROOT]/.claude/principles-core.md",
+    "[PROJECT_ROOT]/.claude/principles-extended.md",
+    "[PROJECT_ROOT]/.claude/guardrails.md"
+  ],
+  "load_on_task": {
+    "inference_gate": "[PROJECT_ROOT]/skills/model-routing.md",
+    "local_inference": "[PROJECT_ROOT]/skills/local-inference.md",
+    "business_design": "[PROJECT_ROOT]/skills/business-architect.md",
+    "verification": "[PROJECT_ROOT]/skills/veritas-verification.md",
+    "iteration_loop": "[PROJECT_ROOT]/workflows/iteration-loop.md"
+  },
+  "output_dir": "[PROJECT_ROOT]/output",
+  "final_dir": "[PROJECT_ROOT]/output/final",
+  "escalate_to": "@project",
+  "max_iterations": 6,
+  "ship_threshold": 0.85
+}

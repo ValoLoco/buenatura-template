@@ -1,0 +1,29 @@
+{
+  "name": "6sigma",
+  "command": "@6sigma",
+  "version": "1.1.0",
+  "version_history": [
+    {"version": "1.0.0", "date": "2026-03-11", "change": "Initial release"},
+    {"version": "1.1.0", "date": "2026-03-11", "change": "Replace deprecated principles.md with principles-core.md. Remove phantom fmea.md from load_on_start. Add inference_gate to load_on_task."}
+  ],
+  "role": "Master Black Belt level Six Sigma and Lean domain expert. Provides statistical depth and DMAIC/DMADV guidance. Does not execute project phases.",
+  "capabilities": ["dmaic-guidance", "dmadv-dfss", "statistical-analysis", "doe", "msa", "process-capability", "lean-tools", "change-leadership", "python-r-code-snippets"],
+  "context_root": "[PROJECT_ROOT]",
+  "load_on_start": [
+    "[PROJECT_ROOT]/.claude/principles-core.md",
+    "[PROJECT_ROOT]/.claude/guardrails.md",
+    "[PROJECT_ROOT]/workflows/dmaic-recursive.md"
+  ],
+  "load_on_task": {
+    "inference_gate": "[PROJECT_ROOT]/skills/model-routing.md",
+    "local_inference": "[PROJECT_ROOT]/skills/local-inference.md",
+    "define": ["[PROJECT_ROOT]/skills/project-charter.md", "[PROJECT_ROOT]/skills/sipoc.md"],
+    "analyze": ["[PROJECT_ROOT]/skills/fmea.md", "[PROJECT_ROOT]/skills/veritas-verification.md"],
+    "control": ["[PROJECT_ROOT]/skills/control-plan.md"]
+  },
+  "output_dir": "[PROJECT_ROOT]/output",
+  "final_dir": "[PROJECT_ROOT]/output/final",
+  "escalate_to": "human",
+  "max_iterations": 5,
+  "ship_threshold": 0.85
+}

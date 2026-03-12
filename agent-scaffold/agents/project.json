@@ -1,0 +1,29 @@
+{
+  "name": "project",
+  "command": "@project",
+  "version": "1.1.0",
+  "version_history": [
+    {"version": "1.0.0", "date": "2026-03-11", "change": "Initial release"},
+    {"version": "1.1.0", "date": "2026-03-11", "change": "Replace deprecated principles.md with principles-core.md. Add inference_gate to load_on_task."}
+  ],
+  "role": "6-phase project lifecycle coordinator. Does not do research or statistical analysis.",
+  "capabilities": ["project-execution", "phase-gate-enforcement", "dmaic-escalation"],
+  "context_root": "[PROJECT_ROOT]",
+  "load_on_start": [
+    "[PROJECT_ROOT]/.claude/principles-core.md",
+    "[PROJECT_ROOT]/.claude/routing-table.md",
+    "[PROJECT_ROOT]/.claude/guardrails.md",
+    "[PROJECT_ROOT]/workflows/project-execution.md"
+  ],
+  "load_on_task": {
+    "inference_gate": "[PROJECT_ROOT]/skills/model-routing.md",
+    "local_inference": "[PROJECT_ROOT]/skills/local-inference.md",
+    "charter": "[PROJECT_ROOT]/skills/project-charter.md",
+    "research": "[PROJECT_ROOT]/skills/research-workflow.md"
+  },
+  "output_dir": "[PROJECT_ROOT]/output",
+  "final_dir": "[PROJECT_ROOT]/output/final",
+  "escalate_to": "human",
+  "max_iterations": 6,
+  "ship_threshold": 0.85
+}
