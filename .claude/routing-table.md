@@ -32,11 +32,13 @@ Requires `infra/bootstrap.sh` to have been run once on this machine.
 | Process Improvement / Defect: Analyze | `workflows/dmaic-recursive.md`, `.claude/guardrails.md` | Content workflows | `skills/fmea.md`, `skills/veritas-verification.md` |
 | Process Improvement / Defect: Control | `workflows/dmaic-recursive.md`, `.claude/guardrails.md` | Content workflows | `skills/control-plan.md` |
 | Project Lifecycle | `workflows/project-execution.md` | Completed phases | `skills/project-charter.md`, `skills/research-workflow.md` |
+| Business Design / MVP / Offer | `workflows/ooda-decision.md` | All workflow files | `skills/business-architect.md` |
+| AgentOps / Tracing | None | All workflow files | `skills/agentops.md` — instrument task with `agent-scaffold/ops/trace_logger.py` |
 | Code / Build | `.claude/principles-core.md`, `.claude/principles-extended.md`, `.claude/guardrails.md` | `workflows/` | Check skills.sh for `code-reviewer` |
 | Quality Review | `.claude/guardrails.md`, `.claude/evaluator.md`, `workflows/iteration-loop.md` | All else | None |
 | Template Gap Found | `.claude/self-extension-protocol.md` | All else | None |
 | Session Start / Close | `.claude/session-log-template.md` | All else | None |
-| Create Agent | `agent-scaffold/` (full), `.claude/skills-protocol.md`, `.claude/principles-extended.md` | All workflow files | `skills/veritas-verification.md` |
+| Create Agent | `agent-scaffold/` (full), `.claude/skills-protocol.md`, `.claude/principles-extended.md` | All workflow files | `skills/skill-creation-guide.md`, `skills/veritas-verification.md` |
 | Autonomous Experiment Loop | `agent-scaffold/autoresearch/` (full) | All workflow files | `skills/autoresearch.md` |
 | No Skill Exists | `.claude/skills-protocol.md` | All else | Search skills.sh first |
 
@@ -48,7 +50,7 @@ Final approved output to `output/final/YYYY-MM-DD-task-final.md`.
 ## Agent Registry
 
 Default agents live in `agent-scaffold/agents/`. Each has a `.md` (instructions) and `.json` (config).
-To add a new agent: create both files, add a row here, update `agent-scaffold/agents/README.md`.
+To add a new agent: create both files, add a row here, update `agent-scaffold/agents/README.md`, update `.claude/framework-relationships.md` Agent Entry Points, and update `skills/README.md` if new skills are introduced.
 
 | Command | Agent File | Type | Responsibility |
 |---------|------------|------|----------------|
@@ -59,3 +61,4 @@ To add a new agent: create both files, add a row here, update `agent-scaffold/ag
 | `@dmaic` | `agent-scaffold/agents/dmaic.md` | Flat specialist | DMAIC loop execution |
 | `@project` | `agent-scaffold/agents/project.md` | Phase coordinator | 6-phase project lifecycle |
 | `@6sigma` | `agent-scaffold/agents/6sigma.md` | Domain expert | Master Black Belt statistical and Lean depth |
+| `@biz` | `agent-scaffold/agents/business-architect.md` | Domain expert | One-person AI business design, MVP scoping, agent stack planning |
