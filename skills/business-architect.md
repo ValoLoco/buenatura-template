@@ -83,7 +83,7 @@ Load this skill when the task involves any of the following:
 | $100K-$1M | Manages systems, closes high-value deals | Onboarding, support, finance reconciliation |
 | $1M-$10M+ | Strategy and high-leverage sales only | Full ops loop: lead nurture, delivery, invoicing, reporting |
 
-For each tier transition, audit current manual tasks and identify the highest-volume repeatable task to automate first.
+For each tier transition, audit current manual tasks and identify the highest-volume repeatable step to automate first.
 
 ---
 
