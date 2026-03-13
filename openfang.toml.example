@@ -1,0 +1,60 @@
+# OpenFang Agent OS — BUENATURA Template Config
+# Copy to ~/.openfang/config.toml and fill in secrets.
+# One copy per project instance. Never commit live secrets.
+
+# Optional: enable Bearer auth on the API
+# api_key = ""
+# api_listen = "127.0.0.1:50051"
+
+[default_model]
+provider = "anthropic"
+model = "claude-sonnet-4-20250514"
+api_key_env = "ANTHROPIC_API_KEY"
+# base_url = "https://api.anthropic.com"
+
+[memory]
+decay_rate = 0.05
+sqlite_path = "./MEMORY/openfang.db"
+
+[network]
+listen_addr = "127.0.0.1:4200"
+# shared_secret = ""  # Required for P2P agent-to-agent auth
+
+# Context compaction — keeps context window lean on long sessions
+# [compaction]
+# threshold = 80
+# keep_recent = 20
+# max_summary_tokens = 1024
+
+# Filesystem MCP: gives the agent read/write access to this project repo
+[[mcp_servers]]
+name = "project-filesystem"
+timeout_secs = 30
+
+[mcp_servers.transport]
+type = "stdio"
+command = "npx"
+args = ["-y", "@modelcontextprotocol/server-filesystem", "./"]
+
+# GitHub MCP: lets the agent interact with this project's GitHub repo
+[[mcp_servers]]
+name = "github"
+timeout_secs = 30
+
+[mcp_servers.transport]
+type = "stdio"
+command = "npx"
+args = ["-y", "@modelcontextprotocol/server-github"]
+
+# Channel adapters — uncomment one per project deployment
+# [telegram]
+# bot_token_env = "TELEGRAM_BOT_TOKEN"
+# allowed_users = []
+
+# [slack]
+# bot_token_env = "SLACK_BOT_TOKEN"
+# app_token_env = "SLACK_APP_TOKEN"
+
+# [discord]
+# bot_token_env = "DISCORD_BOT_TOKEN"
+# guild_ids = []

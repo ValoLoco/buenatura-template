@@ -1,0 +1,22 @@
+# OpenFang agent definition — BUENATURA default
+# Place this file in your project's agents/ directory when deploying via OpenFang.
+# One file per agent role. Duplicate and rename for additional agents.
+
+name = "buenatura-agent"
+description = "Sovereign project agent. Reads KNOWLEDGE and MEMORY, executes via skills and workflows, writes validated output. Respects all guardrails without exception."
+
+# System prompt sourced from the template's agent instructions
+system_prompt_file = "../instructions.md"
+
+# MCP servers this agent is authorised to use (must match names in openfang.toml)
+tools = ["project-filesystem", "github"]
+
+# Paths this agent operates within (filesystem MCP scope enforcement)
+# Restrict to project root — agent cannot escape this boundary
+# working_dir = "./"
+
+# Model override — remove to inherit from [default_model] in config
+# [model]
+# provider = "anthropic"
+# model = "claude-sonnet-4-20250514"
+# api_key_env = "ANTHROPIC_API_KEY"
