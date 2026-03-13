@@ -49,7 +49,7 @@ python agent-scaffold/ops/eval.py --tail 50
 
 - One JSONL file per day at `output/traces/YYYY-MM-DD.jsonl`
 - Each line is one event. Append-only. Never edit past traces.
-- Trace files are committed to git — they are the audit log.
+- Trace files are committed to git -- they are the audit log.
 - Rotate by archiving files older than 90 days to `output/traces/archive/`.
 
 ---

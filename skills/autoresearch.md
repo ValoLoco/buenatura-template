@@ -18,24 +18,24 @@ without human supervision. Do not load for single-shot inference tasks.
 
 Work with the user to:
 
-1. **Agree on a run tag** — propose based on today's date (e.g. `mar11`).
+1. **Agree on a run tag** -- propose based on today's date (e.g. `mar11`).
    Branch `autoresearch/<tag>` must not exist yet.
-2. **Create the branch** — `git checkout -b autoresearch/<tag>` from main.
-3. **Read in-scope files** — before touching anything, read:
-   - `experiment.py` — the only file you modify (model config, eval params, loop)
-   - `harness.py` — fixed eval harness, read-only, do not modify
-   - `README.md` — repo context
-   - `KNOWLEDGE/` — read up to 5 files or 2000 tokens total. Summarize remaining files by filename only.
-   - `MEMORY/context.md` — if it exists
-4. **Verify runtime** — confirm BitNet model exists at path in `$BITNET_MODEL`
+2. **Create the branch** -- `git checkout -b autoresearch/<tag>` from main.
+3. **Read in-scope files** -- before touching anything, read:
+   - `experiment.py` -- the only file you modify (model config, eval params, loop)
+   - `harness.py` -- fixed eval harness, read-only, do not modify
+   - `README.md` -- repo context
+   - `KNOWLEDGE/` -- all files, for domain context
+   - `MEMORY/context.md` -- if it exists
+4. **Verify runtime** -- confirm BitNet model exists at path in `$BITNET_MODEL`
    or the default path in `harness.py`. If not, tell the human and stop.
-5. **Generate eval prompts** — create `eval_prompts.jsonl` (untracked) from:
+5. **Generate eval prompts** -- create `eval_prompts.jsonl` (untracked) from:
    - The user's stated goal for this run
    - Key tasks, claims, or decisions found in `KNOWLEDGE/` and `MEMORY/context.md`
    - Minimum 10 prompts. Each line: `{"prompt": "...", "expected": "..."}`
    - Use `eval_prompts.jsonl.example` for format reference.
    - Do not reuse generic trivia. Every prompt must be domain-relevant.
-6. **Init results log** — create `results.tsv` (untracked) with header row only:
+6. **Init results log** -- create `results.tsv` (untracked) with header row only:
    `commit\tval_score\tstatus\tdescription`
 7. **Confirm and go.**
 
@@ -45,11 +45,11 @@ Each experiment runs for a **fixed time budget** (default: 5 minutes wall clock)
 Launch with: `python harness.py > run.log 2>&1`
 
 **You CAN modify:**
-- `experiment.py` — model config, prompts, hyperparams, eval logic, anything
+- `experiment.py` -- model config, prompts, hyperparams, eval logic, anything
 
 **You CANNOT modify:**
-- `harness.py` — fixed evaluation, timing, and metric extraction
-- `eval_prompts.jsonl` — fixed for the duration of a run tag. Changing it invalidates comparisons.
+- `harness.py` -- fixed evaluation, timing, and metric extraction
+- `eval_prompts.jsonl` -- fixed for the duration of a run tag. Changing it invalidates comparisons.
 - Install new packages outside `pyproject.toml` / `requirements.txt`
 
 **Goal: minimize `val_score`** (or maximize, depending on harness definition.
@@ -87,9 +87,9 @@ Status values: `keep` | `discard` | `crash`
 
 ## Decision Rules
 
-- **Improved**: advance branch, keep commit
+- **Improved** (lower val_score, or higher if harness is inverted): advance branch, keep commit
 - **Equal or worse**: `git reset` to previous commit
-- **Crash**: log status `crash`, attempt one fix, skip if broken at idea level
+- **Crash**: log status `crash`, attempt one fix, skip if broken at the idea level
 - **Timeout** (>10 min): kill, treat as crash
 
 ## Autonomy Rules
@@ -101,12 +101,6 @@ two previously discarded changes, or simplify something that already works.
 
 **NEVER STOP.**
 
-## Handoffs
-
-- If experiment scope expands beyond a single file: stop, flag to human, route to `@project`.
-- If a domain knowledge gap blocks prompt generation: route to `@researcher` with the specific gap.
-- Log all handoffs to `MEMORY/context.md` Past Decisions table before stopping.
-
 ## BitNet Runtime Notes
 
 - Default binary path: `$BITNET_BIN` (set in env or `.env` file)
@@ -117,6 +111,6 @@ two previously discarded changes, or simplify something that already works.
 
 ## Output
 
-- `eval_prompts.jsonl` — generated at setup, untracked, fixed for run duration
-- `results.tsv` — untracked experiment log in scaffold root
-- `run.log` — last experiment stdout/stderr (untracked, overwritten each run)
+- `eval_prompts.jsonl` -- generated at setup, untracked, fixed for run duration
+- `results.tsv` -- untracked experiment log in scaffold root
+- `run.log` -- last experiment stdout/stderr (untracked, overwritten each run)

@@ -55,16 +55,11 @@ Structure (after the frontmatter):
 ## Rules
 - ...
 
-## Handoffs (Required)
-Must include all three fields:
-- Trigger: [what condition causes a handoff out of this skill]
-- Target: [which agent receives the handoff, e.g. @project, @researcher]
-- Pass: [which files or context to include in the handoff]
-Log all handoffs to `MEMORY/context.md` Past Decisions table before stopping.
+## Handoffs
+[Where to escalate if scope is exceeded. Reference specific agents by @command.]
 
 ## Output
 [Format and file location. Follow global naming: output/YYYY-MM-DD-[task-subtype]-vN.md]
-client_facing: true | false
 
 ## Verification
 [3-test protocol: happy path, edge case, error case. Score >= 0.85 with evaluator.md before marking production-ready.]

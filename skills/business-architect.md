@@ -83,7 +83,7 @@ Load this skill when the task involves any of the following:
 | $100K-$1M | Manages systems, closes high-value deals | Onboarding, support, finance reconciliation |
 | $1M-$10M+ | Strategy and high-leverage sales only | Full ops loop: lead nurture, delivery, invoicing, reporting |
 
-For each tier transition, audit current manual tasks and identify the highest-volume repeatable step to automate first.
+For each tier transition, audit current manual tasks and identify the highest-volume repeatable task to automate first.
 
 ---
 
@@ -116,10 +116,10 @@ If the request exceeds the 6-phase framework or requires multi-team coordination
 
 All outputs follow the global naming pattern `output/YYYY-MM-DD-task-vN.md`:
 
-- Standard work: `output/YYYY-MM-DD-biz-[phase]-vN.md`
+- Standard work: `output/YYYY-MM-DD-business-architect-vN.md`
 - Feature backlog: `output/YYYY-MM-DD-backlog-vN.md`
 
-Approved deliverables move to `output/final/YYYY-MM-DD-biz-[phase]-final.md`.
+Approved deliverables move to `output/final/YYYY-MM-DD-business-architect-final.md`.
 
 ---
 
