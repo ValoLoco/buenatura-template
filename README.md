@@ -14,7 +14,7 @@ Every file has a purpose. No bloat.
 | `tools/` | Executable Python tools: `knowledge_search.py` (semantic search over KNOWLEDGE/) |
 | `agent-scaffold/` | Blank agent template + 8 ready-to-use agents + ops (AgentOps), PLAYBOOKS, TEMPLATES, MEMORY, KNOWLEDGE |
 | `infra/` | Local inference backend: BitNet submodule + bootstrap script |
-| `KNOWLEDGE/` | Persistent reference material promoted from verified outputs |
+| `KNOWLEDGE/` | Persistent reference material: `raw/` (sources), `wiki/` (LLM-maintained pages), `index.md`, `log.md` |
 | `MEMORY/` | Agent memory: context.md (state) + session logs |
 | `output/` | All deliverables land here |
 | `output/final/` | Approved, shipped deliverables |
@@ -26,7 +26,7 @@ Every file has a purpose. No bloat.
 3. Open `agent-scaffold/agents/README.md`. Identify which of the 8 pre-built agents fit your use case.
 4. `[PROJECT_ROOT]` in agent files is a runtime token. The agent resolves it automatically. Do not replace it manually.
 5. To create a custom agent: copy `agent-scaffold/instructions.md` and `agent-scaffold/config.json`. Fill in the role and scope. Register across all 4 surfaces per `skills/skill-creation-guide.md` Step 4.
-6. Add domain reference documents to `KNOWLEDGE/` per the promotion criteria in `KNOWLEDGE/README.md`.
+6. Add domain reference documents to `KNOWLEDGE/raw/` and tell the agent to ingest them.
 7. If your first task type is unclear, open `.claude/framework-relationships.md`.
 8. Run your first task through `CLAUDE.md` routing. Confirm output lands in `output/`.
 
@@ -42,6 +42,27 @@ Every file has a purpose. No bloat.
 | `@project` | Project Agent | Execute 6-phase project lifecycle |
 | `@6sigma` | Six Sigma Expert | Master Black Belt statistical and Lean depth |
 | `@biz` | Business Architect | One-person AI business design, MVP scoping, agent stack planning |
+
+## Knowledge Management (LLM Wiki)
+
+`KNOWLEDGE/` follows a three-layer wiki pattern. The LLM builds and maintains a persistent, interlinked knowledge base. Not a raw retrieval index.
+
+**Three layers:**
+- `KNOWLEDGE/raw/` — immutable source documents. Drop files here. Never edited.
+- `KNOWLEDGE/wiki/` — LLM-maintained markdown pages: summaries, entity pages, concept pages, cross-references.
+- `KNOWLEDGE/index.md` — catalog of all wiki pages with one-line summaries, organized by category.
+- `KNOWLEDGE/log.md` — append-only timeline of every ingest, query, and lint pass.
+
+**How to use:**
+
+1. Drop a source file (`.md`, `.txt`, `.pdf` text export) into `KNOWLEDGE/raw/`.
+2. Tell the agent: `Ingest KNOWLEDGE/raw/your-file.md`
+3. The agent reads it, writes a summary wiki page, updates up to 15 existing pages, updates `index.md` and `log.md`.
+4. Ask questions: `Query: what do we know about X?` — the agent reads the index, loads relevant pages, and synthesizes an answer. Good answers are filed back into the wiki automatically.
+5. Periodically: `Lint the wiki` — the agent checks for contradictions, orphan pages, and stale claims.
+
+This is tool-agnostic. Any LLM that can read and write Markdown files runs this workflow.
+See `CLAUDE.md → LLM Wiki Workflow` for the full operation spec.
 
 ## Local Inference (Zero Cost)
 
