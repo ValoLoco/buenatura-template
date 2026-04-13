@@ -4,6 +4,21 @@ A lean, sovereign scaffold for AI-driven projects, agents, and workflows.
 Built on 13 principles. Optimised for one-person and small-team operations.
 Every file has a purpose. No bloat.
 
+## 🚀 Quick Start – Free in GitHub Codespaces (NemoClaw + Nemotron)
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/ValoLoco/buenatura-template)
+
+1. Click the button above (or **Code → Codespaces → Create codespace on main**)
+2. Get a free `NIM_API_KEY` at [build.nvidia.com](https://build.nvidia.com)
+3. Run this one-liner:
+   ```bash
+   curl -fsSL https://www.nvidia.com/nemoclaw.sh | bash
+   ```
+4. Run `nemoclaw onboard` and complete the quick wizard
+5. Start with `CLAUDE.md` — your agent router is ready
+
+> NemoClaw is alpha software (March 2026). The template works perfectly without it — this is optional.
+
 ## What Is Here
 
 | Folder | Purpose |
