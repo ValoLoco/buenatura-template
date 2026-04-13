@@ -59,3 +59,33 @@ Search https://skills.sh before building anything bespoke.
 
 After 3 revisions without improvement: stop and flag for human review.
 Write escalation row to `agent-scaffold/MEMORY/context.md` Past Decisions table. Halt.
+
+---
+
+## LLM Wiki Workflow
+
+Knowledge lives in `KNOWLEDGE/`. Three layers: `raw/` (immutable sources), `wiki/` (LLM-maintained pages), plus `index.md` and `log.md`. Read `KNOWLEDGE/index.md` first on any knowledge task.
+
+**Ingest** — When a source file appears in `raw/`:
+1. Read the source.
+2. Write or update a summary page in `wiki/`.
+3. Update up to 10-15 existing wiki pages where the source adds context, contradicts, or extends prior knowledge.
+4. Add source to `index.md` under the correct category with a one-line summary.
+5. Append an entry to `log.md`: `## [YYYY-MM-DD] ingest | Source Title`
+
+**Query** — When answering a question against the wiki:
+1. Read `index.md` to find relevant pages.
+2. Load those pages. Synthesize an answer with inline citations to wiki page links.
+3. If the answer is non-trivial (comparison, analysis, synthesis), file it back as a new wiki page and add it to `index.md`.
+4. Append to `log.md`: `## [YYYY-MM-DD] query | Question summary`
+
+**Lint** — Periodically or on request:
+1. Check for: contradictions between pages, stale claims superseded by newer sources, orphan pages with no inbound links, concepts mentioned but lacking their own page, missing cross-references.
+2. Fix issues in-place. Do not create new pages just to resolve lint — update existing pages.
+3. Append to `log.md`: `## [YYYY-MM-DD] lint | scope or trigger`
+
+**Rules:**
+- `raw/` is immutable. Never edit files there.
+- Prefer one source per ingest session. Stay in the loop.
+- Index and log are updated on every operation, without exception.
+- This workflow is tool-agnostic. Any LLM that can read and write markdown files can execute it.
